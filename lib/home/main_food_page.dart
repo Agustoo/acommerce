@@ -1,3 +1,4 @@
+import 'package:acommerce/home/food_page_body.dart';
 import 'package:acommerce/widgets/big_text.dart';
 import 'package:acommerce/widgets/small_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,6 +54,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
+          FoodPageBody(),
         ],
       ),
     );
