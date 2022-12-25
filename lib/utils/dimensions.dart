@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 class Dimensions{
+  // height 707 width 411
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
 
@@ -27,4 +28,7 @@ class Dimensions{
   static double radius30 = screenHeight/23.56;
 
   static double iconSize24= screenHeight/29.45;
+
+  static double ListViewImgSize = screenWidth/3.42;
+  static double ListViewTextContSize = screenWidth/4.11;
 }
