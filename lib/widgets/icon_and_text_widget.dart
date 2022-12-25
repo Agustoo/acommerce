@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:acommerce/utils/dimensions.dart';
 import 'package:acommerce/widgets/small_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -19,7 +20,7 @@ class IconAndTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: iconColor, ),
+        Icon(icon, color: iconColor, size: Dimensions.iconSize24),
         SizedBox(width: 5,),
         SmallText(text: text,),
       ],
