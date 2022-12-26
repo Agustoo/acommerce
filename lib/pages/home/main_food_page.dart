@@ -1,4 +1,4 @@
-import 'package:acommerce/home/food_page_body.dart';
+import 'package:acommerce/pages/home/food_page_body.dart';
 import 'package:acommerce/utils/dimensions.dart';
 import 'package:acommerce/widgets/big_text.dart';
 import 'package:acommerce/widgets/small_text.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../utils/colors.dart';
+import '../../utils/colors.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});

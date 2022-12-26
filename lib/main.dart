@@ -1,4 +1,6 @@
-import 'package:acommerce/home/main_food_page.dart';
+import 'package:acommerce/pages/food/popular_food_detail.dart';
+import 'package:acommerce/pages/food/recommended_food_detail.dart';
+import 'package:acommerce/pages/home/main_food_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
