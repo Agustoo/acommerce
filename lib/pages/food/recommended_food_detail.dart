@@ -1,3 +1,6 @@
+import 'package:acommerce/controllers/recommended_product_controller.dart';
+import 'package:acommerce/routes/route_helper.dart';
+import 'package:acommerce/utils/app_constants.dart';
 import 'package:acommerce/utils/colors.dart';
 import 'package:acommerce/utils/dimensions.dart';
 import 'package:acommerce/widgets/app_icon.dart';
@@ -6,29 +9,37 @@ import 'package:acommerce/widgets/expendable_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final int pageId;
+  const RecommendedFoodDetail({super.key,required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product= Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(16.75),
               child: Container(
-                child: Center(child: BigText(size: Dimensions.font26,text: "Nutritious fruit meal in China")),
+                child: Center(child: BigText(size: Dimensions.font26,text: product.name!)),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5,bottom: 10),
                 decoration: BoxDecoration(
@@ -44,8 +55,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 252,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.png",
+              background: Image.network(
+                AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -55,7 +66,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  child: ExpendableTextWidget(text: "Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnceEren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnceEren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnceEren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce Eren İnce"),
+                  child: ExpendableTextWidget(text: product.description!),
                   margin: EdgeInsets.only(left: Dimensions.width20,right: Dimensions.width20),
                 ),
               ],
@@ -84,7 +95,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   icon: Icons.remove
                 ),
                 BigText(
-                  text: "₺60"+" X "+"0" ,
+                  text: "\$ ${product.price} X 0" ,
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -124,7 +135,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
-                  child: BigText(text: "₺70 | Add to Cart", color: Colors.white,),
+                  child: BigText(text: "\$ ${product.price} | Add to Cart", color: Colors.white,),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,
