@@ -1,5 +1,6 @@
 import 'package:acommerce/controllers/popular_product_controller.dart';
 import 'package:acommerce/controllers/recommended_product_controller.dart';
+import 'package:acommerce/pages/cart/cart_page.dart';
 import 'package:acommerce/pages/food/popular_food_detail.dart';
 import 'package:acommerce/pages/food/recommended_food_detail.dart';
 import 'package:acommerce/pages/home/food_page_body.dart';
@@ -32,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

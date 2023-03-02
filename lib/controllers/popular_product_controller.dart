@@ -1,5 +1,6 @@
 import 'package:acommerce/controllers/cart_controller.dart';
 import 'package:acommerce/data/repository/popular_product_repo.dart';
+import 'package:acommerce/models/cart_model.dart';
 import 'package:acommerce/models/products_model.dart';
 import 'package:acommerce/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,10 @@ class PopularProductController extends GetxController {
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
@@ -79,7 +84,6 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    //if (_quantity > 0) {
     _cart.addItem(product, _quantity);
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
@@ -89,13 +93,14 @@ class PopularProductController extends GetxController {
           " The quantity is " +
           value.quantity.toString());
     });
-    /*} else {
-      Get.snackbar(
-        "Item Count",
-        "You should at least add an item to the cart.",
-        backgroundColor: AppColors.mainColor,
-        colorText: Colors.white,
-      );
-    }*/
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
