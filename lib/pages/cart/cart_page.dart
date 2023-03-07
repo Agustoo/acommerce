@@ -1,4 +1,6 @@
 import 'package:acommerce/controllers/cart_controller.dart';
+import 'package:acommerce/controllers/popular_product_controller.dart';
+import 'package:acommerce/controllers/recommended_product_controller.dart';
 import 'package:acommerce/pages/home/main_food_page.dart';
 import 'package:acommerce/routes/route_helper.dart';
 import 'package:acommerce/utils/app_constants.dart';
@@ -76,22 +78,45 @@ class CartPage extends StatelessWidget {
                               width: double.maxFinite,
                               child: Row(
                                 children: [
-                                  Container(
-                                    width: Dimensions.height20 * 5,
-                                    height: Dimensions.height20 * 5,
-                                    margin: EdgeInsets.only(
-                                        bottom: Dimensions.height10),
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(
-                                                AppConstants.BASE_URL +
-                                                    AppConstants.UPLOAD_URL +
-                                                    cartController
-                                                        .getItems[index].img!)),
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.radius20),
-                                        color: Colors.white),
+                                  GestureDetector(
+                                    onTap: () {
+                                      var popularIndex =
+                                          Get.find<PopularProductController>()
+                                              .popularProductList
+                                              .indexOf(
+                                                  _cartList[index].product!);
+                                      if (popularIndex >= 0) {
+                                        //equal or greater than 0 means it found
+                                        Get.toNamed(RouteHelper.getPopularFood(
+                                            popularIndex));
+                                      } else {
+                                        var recommendedIndex = Get.find<
+                                                RecommendedProductController>()
+                                            .recommendedProductList
+                                            .indexOf(_cartList[index].product!);
+                                        Get.toNamed(
+                                            RouteHelper.getRecommendedFood(
+                                                recommendedIndex));
+                                      }
+                                    },
+                                    child: Container(
+                                      width: Dimensions.height20 * 5,
+                                      height: Dimensions.height20 * 5,
+                                      margin: EdgeInsets.only(
+                                          bottom: Dimensions.height10),
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  AppConstants.BASE_URL +
+                                                      AppConstants.UPLOAD_URL +
+                                                      cartController
+                                                          .getItems[index]
+                                                          .img!)),
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius20),
+                                          color: Colors.white),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: Dimensions.width10,
