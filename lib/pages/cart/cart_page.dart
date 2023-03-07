@@ -1,5 +1,6 @@
 import 'package:acommerce/controllers/cart_controller.dart';
 import 'package:acommerce/pages/home/main_food_page.dart';
+import 'package:acommerce/routes/route_helper.dart';
 import 'package:acommerce/utils/app_constants.dart';
 import 'package:acommerce/utils/colors.dart';
 import 'package:acommerce/utils/dimensions.dart';
@@ -37,7 +38,7 @@ class CartPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => MainFoodPage());
+                      Get.toNamed(RouteHelper.getInitial());
                     },
                     child: AppIcon(
                       icon: Icons.home_outlined,
@@ -66,8 +67,9 @@ class CartPage extends StatelessWidget {
                   removeTop: true,
                   child: GetBuilder<CartController>(
                     builder: (cartController) {
+                      var _cartList = cartController.getItems;
                       return ListView.builder(
-                          itemCount: cartController.getItems.length,
+                          itemCount: _cartList.length,
                           itemBuilder: (_, index) {
                             return Container(
                               height: Dimensions.height20 * 5,
@@ -135,8 +137,10 @@ class CartPage extends StatelessWidget {
                                                 children: [
                                                   GestureDetector(
                                                       onTap: () {
-                                                        //popularProduct
-                                                        //.setQuantity(false);
+                                                        cartController.addItem(
+                                                            _cartList[index]
+                                                                .product!,
+                                                            -1);
                                                       },
                                                       child: Icon(
                                                         Icons.remove,
@@ -148,18 +152,19 @@ class CartPage extends StatelessWidget {
                                                         Dimensions.width10 / 2,
                                                   ),
                                                   BigText(
-                                                      text: "0" //popularProduct
-                                                      //.inCartItems
-                                                      //.toString()
-                                                      ),
+                                                      text: _cartList[index]
+                                                          .quantity
+                                                          .toString()),
                                                   SizedBox(
                                                     width:
                                                         Dimensions.width10 / 2,
                                                   ),
                                                   GestureDetector(
                                                       onTap: () {
-                                                        //popularProduct
-                                                        //  .setQuantity(true);
+                                                        cartController.addItem(
+                                                            _cartList[index]
+                                                                .product!,
+                                                            1);
                                                       },
                                                       child: Icon(
                                                         Icons.add,
