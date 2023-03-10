@@ -1,6 +1,7 @@
 import 'package:acommerce/pages/cart/cart_page.dart';
 import 'package:acommerce/pages/food/popular_food_detail.dart';
 import 'package:acommerce/pages/food/recommended_food_detail.dart';
+import 'package:acommerce/pages/home/home_page.dart';
 import 'package:acommerce/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,7 @@ class RouteHelper {
     GetPage(
         name: initial,
         page: () {
-          return MainFoodPage();
+          return HomePage();
         },
         transition: Transition.fadeIn),
     GetPage(

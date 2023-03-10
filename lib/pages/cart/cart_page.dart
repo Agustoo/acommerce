@@ -142,7 +142,7 @@ class CartPage extends StatelessWidget {
                                           children: [
                                             BigText(
                                               text: cartController
-                                                  .getItems[index]!.price
+                                                  .getItems[index].price
                                                   .toString(),
                                               color: Colors.redAccent,
                                             ),
