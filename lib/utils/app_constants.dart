@@ -1,4 +1,4 @@
-class AppConstants{
+class AppConstants {
   static const String APP_NAME = "Getirhele";
   static const int APP_VERSION = 1;
 
@@ -8,5 +8,6 @@ class AppConstants{
   static const String UPLOAD_URL = "/uploads/";
 
   static const String TOKEN = "AGtoken";
-  
+
+  static const String CART_LIST = "cart-list";
 }
